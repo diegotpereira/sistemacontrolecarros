@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-bt" xmlns="http://www.w3.org/1999/xhtml"
+                   xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuário</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <form th:action="@{/}" method="get">
+        <button type="submit" class="btn btn-md btn-warning btn-block">Ir para a página de login</button>
+    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <form th:action="@{/registration}" th:object="${user}" class="form-horizontal" autocomplete="off" method="post">
+                    <h2>Formulário de Cadastro</h2>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <label for="" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="validation-message"></label>
+                            <input type="text" name="" id="" th:field="*{name}" placeholder="Nome" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <label for="" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="validation-message"></label>
+                            <input type="text" name="" id="" th:field="*{lastName}" placeholder="Sobrenome" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <label for="" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message"></label>
+                            <input type="text" name="" id="" th:field="*{email}" placeholder="Email" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <label for="" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="validation-message"></label>
+                            <input type="text" name="" id="" th:field="*{userName}" placeholder="Usuário Nome" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <label for="" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="validation-message"></label>
+                            <input type="password" name="" id="" th:field="*{password}" placeholder="Usuário Senha" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <button type="submit" class="btn btn-primary btn-block">Cadastrar Usuário</button>
+                        </div>
+                    </div>
+
+                    <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
