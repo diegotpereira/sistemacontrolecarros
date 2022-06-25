@@ -37,15 +37,15 @@ public class User {
 
     @Column(name = "password")
     // @Length(min = 5, message = "*Sua senha deve ter pelo menos 5 caracteres")
-    @NotEmpty(message = "*Por favor fornceça sua senha")
+    @NotEmpty(message = "*Por favor forneça sua senha")
     private String password;
 
     @Column(name = "name")
-    @NotEmpty(message = "*Por favor fornece seu nome")
+    @NotEmpty(message = "*Por favor forneça seu nome")
     private String name;
 
     @Column(name = "lastname")
-    @NotEmpty(message = "*Por favor fornece seu sobrenome")
+    @NotEmpty(message = "*Por favor forneça seu sobrenome")
     private String lastname;
 
     @Column(name = "active")

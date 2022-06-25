@@ -24,7 +24,7 @@ public class UserDetailService implements UserDetailsService{
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String userName) {
         // TODO Auto-generated method stub
         User user = userService.findUserByUserName(userName);
         List<GrantedAuthority> autoridades = getUserAuthority(user.getRoles());
@@ -32,14 +32,12 @@ public class UserDetailService implements UserDetailsService{
         return buildUserForAuthentication(user, autoridades);
     }
     private List<GrantedAuthority> getUserAuthority(Set<Role> userRoles) {
-        Set<GrantedAuthority> funcoes = new HashSet<GrantedAuthority>();
+        Set<GrantedAuthority> funcoes = new HashSet<>();
 
         for(Role role : userRoles) {
             funcoes.add(new SimpleGrantedAuthority(role.getRole()));
         }
-        List<GrantedAuthority> autoridadesConcedidas = new ArrayList<>(funcoes);
-
-        return autoridadesConcedidas;
+        return new ArrayList<>(funcoes);
     }
     private UserDetails buildUserForAuthentication(User user, List<GrantedAuthority> authorities) {
 

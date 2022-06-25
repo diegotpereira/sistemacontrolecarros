@@ -19,14 +19,14 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
+    @GetMapping(value = {"/", "/login"})
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
 
         return modelAndView;
     }
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    @GetMapping(value = "/registration")
     public ModelAndView registration() {
         ModelAndView modelAndView = new ModelAndView();
 
@@ -36,7 +36,7 @@ public class LoginController {
 
         return modelAndView;
     }
-    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    @PostMapping(value = "/registration")
     public ModelAndView criarUsuario(@Valid User user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
 
@@ -57,7 +57,7 @@ public class LoginController {
         }
         return modelAndView;
     }
-    @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
+    @GetMapping(value = "/admin/home")
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView();
 
