@@ -1,30 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+                   xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Entrar</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
-    <form action="" method="get">
-        <button type="submit">Ir para a página de registro</button>
+    <form th:action="@{registration}" method="get">
+        <button type="submit" class="btn btn-md btn-warning btn-block">Ir para a página de registro</button>
     </form>
     <div class="container">
-        <img src="" alt="Logo" class="img-responsive center-block" width="300" height="300">
-        <form action="" method="post">
-            <h3 class="form-signin-heading"></h3>
+        <img th:src="@{/images/login.jpg}" alt="Logo" class="img-responsive center-block" width="300" height="300">
+        <form th:action="@{/login}" method="post" class="form-signin">
+            <h3 class="form-signin-heading" th:text="Bem-vindo"></h3>
 
             <br />
 
-            <input type="text" name="" id="" placeholder="Nome de Usuário"> <br />
-            <input type="password" name="" id="" placeholder="Senha"> <br />
+            <input type="text" name="user_name" id="user_name" placeholder="Nome de Usuário" class="form-control"> <br />
+            <input type="password" class="form-control" name="password" id="password" th:placeholder="Senha"> <br />
 
-            <div class="center">
+            <div class="center" th:if="${param.error}">
                 <p style="font-size: 20; color: #FF1C19">Nome de usuário ou senha inválidos, verifique</p>
             </div>
 
-            <button type="submit" class="btn btn-lg btn-primary btn-block"></button>
+            <button type="Submit" class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" th:text="Entrar"></button>
         </form>
     </div>
 </body>

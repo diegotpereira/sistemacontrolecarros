@@ -1,16 +1,22 @@
 package br.com.java.sistemacontrolecarros.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.java.sistemacontrolecarros.models.Movimentacao;
 import br.com.java.sistemacontrolecarros.models.User;
+import br.com.java.sistemacontrolecarros.repository.MovimentacaoRepository;
+import br.com.java.sistemacontrolecarros.service.MovimentacaoService;
 import br.com.java.sistemacontrolecarros.service.UserService;
 
 @Controller
@@ -19,6 +25,16 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+	private MovimentacaoService movimentacaoService;
+
+    private final MovimentacaoRepository movimentacaoRepository;
+
+    public LoginController(MovimentacaoRepository movimentacaoRepository) {
+        this.movimentacaoRepository = movimentacaoRepository;
+    }
+
+    
     @GetMapping(value = {"/", "/login"})
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
@@ -58,7 +74,7 @@ public class LoginController {
         return modelAndView;
     }
     @GetMapping(value = "/admin/home")
-    public ModelAndView home() {
+    public ModelAndView home(Model model) {
         ModelAndView modelAndView = new ModelAndView();
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -67,6 +83,10 @@ public class LoginController {
         modelAndView.addObject("userName", "Bem-Vindo " + user.getUserName() + "/" + user.getName() + " " + user.getLastname() + " (" + user.getEmail() + " )");
         modelAndView.addObject("adminMessage", "Conteúdo disponível apenas para usuários com função de administrador");
         modelAndView.setViewName("admin/home");
+
+        List<Movimentacao> carros = movimentacaoService.findAll();
+        model.addAttribute("carros", carros);
+        
 
         return modelAndView;
     }
