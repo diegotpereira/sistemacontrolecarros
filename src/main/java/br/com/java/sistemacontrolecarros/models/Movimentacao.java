@@ -18,8 +18,8 @@ public class Movimentacao {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="veiculo_id")
-    private Integer id;
+    @Column(name="id")
+    private Long id;
 
     @Column(name = "placa")
     @NotEmpty(message = "*Por favor forneça uma placa")
@@ -31,11 +31,11 @@ public class Movimentacao {
 
     @Column(name = "data_entrada")
     @NotEmpty(message = "*Por favor forneça uma data de entrada")
-    private LocalDateTime data_entrada;
+    private LocalDateTime data_entrada = LocalDateTime.now();
 
     @Column(name = "data_saida")
     @NotEmpty(message = "*Por favor forneça uma data de saída")
-    private LocalDateTime data_saida;
+    private Date data_saida;
 
     @Column(name = "tempo")
     @NotEmpty(message = "*Por favor forneça o tempo de permanencia")

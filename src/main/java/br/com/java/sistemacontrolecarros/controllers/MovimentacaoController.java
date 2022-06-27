@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -55,6 +56,24 @@ public class MovimentacaoController {
         movimentacaoRepository.save(movimentacao);
 		// modelAndView.setViewName("admin/home");
 
+        return new ModelAndView("redirect:/admin/home");
+    }
+	@GetMapping("/carros/editar/{id}")
+    public ModelAndView exibirFormularioAtualizar(@PathVariable("id") long id, Model model) {
+
+		ModelAndView modelAndView = new ModelAndView();
+        Movimentacao movimentacao = movimentacaoRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Id do carro inválido:" + id));
+        model.addAttribute("movimentacao", movimentacao);
+
+		modelAndView.setViewName("admin/atualizar");
+        return modelAndView;
+    }
+	@PostMapping("/atualizar/{id}")
+    public ModelAndView updateStudent(@PathVariable("id") long id, Movimentacao movimentacao, Model model) {
+        
+        movimentacaoRepository.save(movimentacao);
+        model.addAttribute("movimentacao", movimentacaoRepository.findAll());
         return new ModelAndView("redirect:/admin/home");
     }
 }
