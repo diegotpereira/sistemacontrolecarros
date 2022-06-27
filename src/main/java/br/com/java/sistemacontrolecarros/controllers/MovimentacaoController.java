@@ -1,5 +1,6 @@
 package br.com.java.sistemacontrolecarros.controllers;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -94,6 +95,13 @@ public class MovimentacaoController {
         
 		// Date horarioSaida = new Date();
 		// movimentacao.setData_saida(horarioSaida);
+
+        for(Movimentacao carro : movimentacaoRepository.findAll()) {
+            BigDecimal horas = movimentacaoService.calcularDiferenca(carro.getData_entrada(), new Date());
+            BigDecimal totalPagar = movimentacaoService.calcularPagamento(carro.getValor_pago(), horas); 
+            carro.setValor_pago(totalPagar);
+
+        }
         movimentacaoRepository.save(movimentacao);
         model.addAttribute("movimentacao", movimentacaoRepository.findAll());
         return new ModelAndView("redirect:/admin/home");
