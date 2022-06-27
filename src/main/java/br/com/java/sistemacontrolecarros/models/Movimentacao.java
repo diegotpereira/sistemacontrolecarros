@@ -35,7 +35,7 @@ public class Movimentacao {
 
     @Column(name = "data_saida")
     @NotEmpty(message = "*Por favor forneça uma data de saída")
-    private Date data_saida;
+    private LocalDateTime data_saida;
 
     @Column(name = "tempo")
     @NotEmpty(message = "*Por favor forneça o tempo de permanencia")
