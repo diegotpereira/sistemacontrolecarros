@@ -1,5 +1,6 @@
 package br.com.java.sistemacontrolecarros.controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,8 +71,29 @@ public class MovimentacaoController {
         return modelAndView;
     }
 	@PostMapping("/atualizar/{id}")
-    public ModelAndView updateStudent(@PathVariable("id") long id, Movimentacao movimentacao, Model model) {
+    public ModelAndView ataulizarCarro(@PathVariable("id") long id, Movimentacao movimentacao, Model model) {
         
+        movimentacaoRepository.save(movimentacao);
+        model.addAttribute("movimentacao", movimentacaoRepository.findAll());
+        return new ModelAndView("redirect:/admin/home");
+    }
+
+	@GetMapping("/carros/finalizar/{id}")
+    public ModelAndView exibirFormularioFinalizar(@PathVariable("id") long id, Model model) {
+
+		ModelAndView modelAndView = new ModelAndView();
+        Movimentacao movimentacao = movimentacaoRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Id do carro inválido:" + id));
+        model.addAttribute("movimentacao", movimentacao);
+
+		modelAndView.setViewName("admin/saida");
+        return modelAndView;
+    }
+	@PostMapping("/finalizar/{id}")
+    public ModelAndView finalizarCarro(@PathVariable("id") long id, Movimentacao movimentacao, Model model) {
+        
+		// Date horarioSaida = new Date();
+		// movimentacao.setData_saida(horarioSaida);
         movimentacaoRepository.save(movimentacao);
         model.addAttribute("movimentacao", movimentacaoRepository.findAll());
         return new ModelAndView("redirect:/admin/home");
