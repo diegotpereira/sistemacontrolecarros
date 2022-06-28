@@ -97,10 +97,12 @@ public class MovimentacaoController {
         return modelAndView;
     }
 	@PostMapping("/finalizar/{id}")
-    public ModelAndView finalizarCarro(@PathVariable("id") long id, Movimentacao movimentacao, Model model) {
+    public ModelAndView finalizarCarro(@PathVariable("id") long id, Movimentacao movimentacao, Model model, String data_entrada, String data_saida) {
 
         
 		movimentacaoService.registrarSaida(movimentacao);
+
+        
 
     
         model.addAttribute("movimentacao", movimentacaoRepository.findAll());
