@@ -114,4 +114,17 @@ public class MovimentacaoServiceImpl implements MovimentacaoService{
         
         return movimentacao;
 }
+
+    @Override
+    public BigDecimal calcularDiferenca(LocalDate data_entrada, LocalDate data_saida) {
+        // TODO Auto-generated method stub
+        // org.joda.time.LocalDate entrada = new org.joda.time.LocalDate();
+        DateTime entrada = new DateTime(data_entrada);
+        DateTime saida = new DateTime(data_saida);
+
+        BigDecimal minutos = new BigDecimal(Minutes.minutesBetween(entrada, saida).getMinutes());
+        BigDecimal horas = minutos.divide(new BigDecimal("60"), 2, RoundingMode.HALF_UP);
+        return horas;
+
+    }
 }

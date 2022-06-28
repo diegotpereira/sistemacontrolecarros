@@ -102,9 +102,12 @@ public class MovimentacaoController {
         
 		movimentacaoService.registrarSaida(movimentacao);
 
-        
+        // Calcular periodo estacionado
+        BigDecimal horas = movimentacaoService.calcularDiferenca(movimentacao.getData_entrada(), movimentacao.getData_saida());
+        BigDecimal valor_pago = movimentacaoService.calcularPagamento(movimentacao.getPreco_Hora(), horas);
+        movimentacao.setValor_pago(valor_pago);
 
-    
+
         model.addAttribute("movimentacao", movimentacaoRepository.findAll());
         return new ModelAndView("redirect:/admin/home");
     }

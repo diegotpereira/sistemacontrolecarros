@@ -1,6 +1,7 @@
 package br.com.java.sistemacontrolecarros.service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,7 @@ public interface MovimentacaoService {
     public Movimentacao registrarEntrada(Movimentacao movimentacao);
 
     public Movimentacao registrarSaida(Movimentacao movimentacao);
+    BigDecimal calcularDiferenca(LocalDate data_entrada, LocalDate data_saida);
 
 
 }
