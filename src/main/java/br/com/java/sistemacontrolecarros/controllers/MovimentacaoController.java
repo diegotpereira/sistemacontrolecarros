@@ -1,9 +1,11 @@
 package br.com.java.sistemacontrolecarros.controllers;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,6 +57,10 @@ public class MovimentacaoController {
     public ModelAndView addCarros(Model model, Movimentacao movimentacao) {
 		// ModelAndView modelAndView = new ModelAndView();
 
+        // Date data_entrada = new Date();
+        // movimentacao.setData_entrada(data_entrada);
+        movimentacaoService.registrarEntrada(movimentacao);
+
         movimentacaoRepository.save(movimentacao);
 		// modelAndView.setViewName("admin/home");
 
@@ -92,17 +98,11 @@ public class MovimentacaoController {
     }
 	@PostMapping("/finalizar/{id}")
     public ModelAndView finalizarCarro(@PathVariable("id") long id, Movimentacao movimentacao, Model model) {
+
         
-		// Date horarioSaida = new Date();
-		// movimentacao.setData_saida(horarioSaida);
+		movimentacaoService.registrarSaida(movimentacao);
 
-        for(Movimentacao carro : movimentacaoRepository.findAll()) {
-            BigDecimal horas = movimentacaoService.calcularDiferenca(carro.getData_entrada(), new Date());
-            BigDecimal totalPagar = movimentacaoService.calcularPagamento(carro.getValor_pago(), horas); 
-            carro.setValor_pago(totalPagar);
-
-        }
-        movimentacaoRepository.save(movimentacao);
+    
         model.addAttribute("movimentacao", movimentacaoRepository.findAll());
         return new ModelAndView("redirect:/admin/home");
     }

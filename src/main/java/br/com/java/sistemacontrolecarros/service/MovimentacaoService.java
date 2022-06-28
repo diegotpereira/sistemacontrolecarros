@@ -19,6 +19,11 @@ public interface MovimentacaoService {
 
     public BigDecimal calcularDiferenca(Date data1, Date data2);
 
-	public BigDecimal calcularPagamento(BigDecimal precoHora, BigDecimal hora);
+	public BigDecimal calcularPagamento(BigDecimal preco_Hora, BigDecimal hora);
+
+    public Movimentacao registrarEntrada(Movimentacao movimentacao);
+
+    public Movimentacao registrarSaida(Movimentacao movimentacao);
+
 
 }

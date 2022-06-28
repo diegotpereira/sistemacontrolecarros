@@ -2,6 +2,8 @@ package br.com.java.sistemacontrolecarros.service.impl;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -68,10 +70,10 @@ public class MovimentacaoServiceImpl implements MovimentacaoService{
     }
 
     @Override
-    public BigDecimal calcularDiferenca(Date horarioEntrada, Date horarioSaida) {
+    public BigDecimal calcularDiferenca(Date data_entrada, Date data_saida) {
         // TODO Auto-generated method stub
-        DateTime entrada = new DateTime(horarioEntrada);
-        DateTime saida = new DateTime(horarioSaida);
+        DateTime entrada = new DateTime(data_entrada);
+        DateTime saida = new DateTime(data_saida);
 
         BigDecimal minutos = new BigDecimal(Minutes.minutesBetween(entrada, saida).getMinutes());
         BigDecimal horas = minutos.divide(new BigDecimal("60"), 2, RoundingMode.HALF_UP);
@@ -79,11 +81,37 @@ public class MovimentacaoServiceImpl implements MovimentacaoService{
     }
 
     @Override
-    public BigDecimal calcularPagamento(BigDecimal precoHora, BigDecimal horas) {
+    public BigDecimal calcularPagamento(BigDecimal preco_Hora, BigDecimal horas) {
         // TODO Auto-generated method stub
-        BigDecimal totalPagar = precoHora.multiply(horas);
+        BigDecimal valor_pago = preco_Hora.multiply(horas);
         
-        return totalPagar;
+        return valor_pago;
     }
-    
+
+    public Movimentacao registrarEntrada(Movimentacao movimentacao) {
+
+        movimentacao.setData_entrada(LocalDate.now());
+        movimentacao.setHora_entrada(LocalTime.now());
+
+        return movimentoRepository.save(movimentacao);
+    }
+    public Movimentacao registrarSaida(Movimentacao movimentacao) {
+
+        Movimentacao movimentacaoSaindo = movimentoRepository.findById(movimentacao.getId()).get();
+		Movimentacao movimentacaoSaindoRegistrado = registrarHoraSaida(registrarDataSaida(movimentacaoSaindo));
+
+        return movimentoRepository.save(movimentacaoSaindoRegistrado);
+    }
+
+    public Movimentacao registrarDataSaida(Movimentacao movimentacao) {
+		
+		movimentacao.setData_saida(LocalDate.now());
+		
+		return movimentacao;
+	}
+    public Movimentacao registrarHoraSaida(Movimentacao movimentacao) {
+        movimentacao.setHora_saida(LocalTime.now());
+        
+        return movimentacao;
+}
 }
