@@ -15,29 +15,29 @@
         <div class="card">
             <div class="card-body">
                 <div class="col-md-8">
-                    <form action="#" th:action="@{/finalizar/{id}(id=${movimentacao.id})}" th:object="${movimentacao}" method="post">
+                    <form action="#" th:action="@{/movimentacao/finalizar/{id}(id=${movimentacao.id})}" th:object="${movimentacao}" method="post">
                         <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="placa" class="col-form-label">Placa</label> 
-                                <input type="text" th:field="*{placa}" class="form-control" id="placa" placeholder="placa"> 
-                            </div>
                             <div class="form-group col-md-8">
-                                <label for="modelo" class="col-form-label">Modelo</label> 
-                                <input type="text" th:field="*{modelo}" class="form-control" id="modelo" placeholder="modelo"> 
-                            </div>
-                            <!-- <div class="form-group col-md-8">
-                                <label for="data_saida" class="col-form-label">Data de Saída</label> 
-                                <input type="text" th:field="*{data_saida}" class="form-control" id="data_saida" placeholder="data de saida"> 
-                            </div> -->
-                            <!-- <div class="form-group col-md-8">
-                                <label for="tempo" class="col-form-label">Tempo</label> 
-                                <input type="text" th:field="*{tempo}" class="form-control" id="tempo" placeholder="tempo"> 
-                            </div> -->
-                            <div class="form-group col-md-8">
-                                <label for="preco_Hora" class="col-form-label">Valor a Pagar</label> 
-                                <input type="text" th:field="*{preco_Hora}" class="form-control" id="preco_Hora" placeholder="preço da hora"> 
+                                <label for="veiculo" class="col-form-label">Veiculo</label> 
+                                <input type="text" th:field="*{veiculo}" class="form-control" id="veiculo" > 
                             </div> 
-    
+                            <div class="form-group col-md-8">
+                                <label for="data_entrada" class="col-form-label">Data Entrada</label> 
+                                <input type="text" th:field="*{data_entrada}" class="form-control" id="data_entrada" > 
+
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="hora_entrada" class="col-form-label">Hora Entrada</label> 
+                                <input type="text" th:field="*{hora_entrada}" class="form-control" id="hora_entrada" > 
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="data_saida" class="col-form-label">Data de Saída</label> 
+                                <input type="text" th:field="*{data_saida}" class="form-control" id="data_saida" > 
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="hora_saida" class="col-form-label">Hora Saida</label> 
+                                <input type="text" th:field="*{hora_saida}" class="form-control" id="hora_saida" > 
+                            </div>
                             <div class="form-group col-md-8">
                                 <input type="submit" class="btn btn-primary" value="Finalizar">
                             </div>

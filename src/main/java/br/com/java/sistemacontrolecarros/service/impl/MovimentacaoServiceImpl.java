@@ -1,92 +1,57 @@
 package br.com.java.sistemacontrolecarros.service.impl;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import org.joda.time.DateTime;
-import org.joda.time.Minutes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.java.sistemacontrolecarros.models.Movimentacao;
+import br.com.java.sistemacontrolecarros.models.*;
 import br.com.java.sistemacontrolecarros.repository.MovimentacaoRepository;
-import br.com.java.sistemacontrolecarros.service.MovimentacaoService;
+import br.com.java.sistemacontrolecarros.service.*;
 
 @Service
 public class MovimentacaoServiceImpl implements MovimentacaoService{
 
-    private final MovimentacaoRepository movimentoRepository;
+    @Override
+    public BigDecimal calcularPagamento(BigDecimal preco_Hora, BigDecimal hora) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
+    @Override
+    public Tiket registrarSaida(Movimentacao movimentacao) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
     @Autowired
-    public MovimentacaoServiceImpl(MovimentacaoRepository movimentoRepository) {
-        this.movimentoRepository = movimentoRepository;
-    }
+    MovimentacaoRepository movimentoRepository;
 
-    @Override
-    public List<Movimentacao> findAll() {
-        // TODO Auto-generated method stub
-        List<Movimentacao> carros = new ArrayList<>();
+    // @Autowired
+    // TiketService tiketService;
 
-        for(Movimentacao movimentacao : movimentoRepository.findAll()) {
-            carros.add(movimentacao);
-        }
+    // @Autowired
+    // PrecoService precoService;
 
-        return carros;
-    }
+    // @Autowired
+    // MovimentacaoService movimentacaoService;
 
-    @Override
-    public void save(Movimentacao movimentacao) {
-        // TODO Auto-generated method stub
+    // @Autowired
+    // VeiculoService veiculoService;
+
+    
+    // public MovimentacaoServiceImpl(MovimentacaoRepository movimentoRepository) {
+    //     this.movimentoRepository = movimentoRepository;
+    // }
+
+    // @Override
+    // public BigDecimal calcularPagamento(BigDecimal preco_Hora, BigDecimal horas) {
+    //     // TODO Auto-generated method stub
+    //     BigDecimal valor_pago = preco_Hora.multiply(horas);
         
-    }
-
-    @Override
-    public Movimentacao getById(Long id) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public List<Movimentacao> getByPlaca(String placa) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public List<Movimentacao> getByModelo(String modelo) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public BigDecimal calcularDiferenca(Date data_entrada, Date data_saida) {
-        // TODO Auto-generated method stub
-        DateTime entrada = new DateTime(data_entrada);
-        DateTime saida = new DateTime(data_saida);
-
-        BigDecimal minutos = new BigDecimal(Minutes.minutesBetween(entrada, saida).getMinutes());
-        BigDecimal horas = minutos.divide(new BigDecimal("60"), 2, RoundingMode.HALF_UP);
-        return horas;
-    }
-
-    @Override
-    public BigDecimal calcularPagamento(BigDecimal preco_Hora, BigDecimal horas) {
-        // TODO Auto-generated method stub
-        BigDecimal valor_pago = preco_Hora.multiply(horas);
-        
-        return valor_pago;
-    }
+    //     return valor_pago;
+    // }
 
     public Movimentacao registrarEntrada(Movimentacao movimentacao) {
 
@@ -95,36 +60,44 @@ public class MovimentacaoServiceImpl implements MovimentacaoService{
 
         return movimentoRepository.save(movimentacao);
     }
-    public Movimentacao registrarSaida(Movimentacao movimentacao) {
+    // public Tiket registrarSaida(Movimentacao movimentacao) {
 
-        Movimentacao movimentacaoSaindo = movimentoRepository.findById(movimentacao.getId()).get();
-		Movimentacao movimentacaoSaindoRegistrado = registrarHoraSaida(registrarDataSaida(movimentacaoSaindo));
+    //     Movimentacao movimentacaoSaindo = movimentoRepository.findById(movimentacao.getId()).get();
+	// 	Movimentacao movimentacaoSaindoRegistrado = registrarHoraSaida(registrarDataSaida(movimentacaoSaindo));
 
-        return movimentoRepository.save(movimentacaoSaindoRegistrado);
-    }
+    //     movimentoRepository.save(movimentacaoSaindoRegistrado);
 
-    public Movimentacao registrarDataSaida(Movimentacao movimentacao) {
+
+    //     return tiketService.gerarCupomPagamento(movimentacaoSaindoRegistrado);
+    // }
+
+    // public Movimentacao registrarDataSaida(Movimentacao movimentacao) {
 		
-		movimentacao.setData_saida(LocalDate.now());
+	// 	movimentacao.setData_saida(LocalDate.now());
 		
-		return movimentacao;
-	}
-    public Movimentacao registrarHoraSaida(Movimentacao movimentacao) {
-        movimentacao.setHora_saida(LocalTime.now());
+	// 	return movimentacao;
+	// }
+    // public Movimentacao registrarHoraSaida(Movimentacao movimentacao) {
+    //     movimentacao.setHora_saida(LocalTime.now());
         
-        return movimentacao;
-}
+    //     return movimentacao;
+    // }
+
 
     @Override
-    public BigDecimal calcularDiferenca(LocalDate data_entrada, LocalDate data_saida) {
+    public Movimentacao buscarRegistroPorId(Movimentacao movimentacao) {
         // TODO Auto-generated method stub
-        // org.joda.time.LocalDate entrada = new org.joda.time.LocalDate();
-        DateTime entrada = new DateTime(data_entrada);
-        DateTime saida = new DateTime(data_saida);
-
-        BigDecimal minutos = new BigDecimal(Minutes.minutesBetween(entrada, saida).getMinutes());
-        BigDecimal horas = minutos.divide(new BigDecimal("60"), 2, RoundingMode.HALF_UP);
-        return horas;
-
+        return movimentoRepository.findById(movimentacao.getId()).get();
     }
+
+    @Override
+    public Movimentacao preencherDadosManualmente(Movimentacao movimentacao) {
+        // TODO Auto-generated method stub
+        Movimentacao movimentacaoManual = new Movimentacao();
+		movimentacaoManual.setData_entrada(movimentacao.getData_entrada());
+		movimentacaoManual.setHora_entrada(movimentacao.getHora_entrada());
+		movimentacaoManual.setVeiculo(movimentacao.getVeiculo());
+		return movimentacaoManual;
+    }
+    
 }

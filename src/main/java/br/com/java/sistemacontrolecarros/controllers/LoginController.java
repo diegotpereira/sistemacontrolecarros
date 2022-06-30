@@ -13,11 +13,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.java.sistemacontrolecarros.models.Movimentacao;
-import br.com.java.sistemacontrolecarros.models.User;
+import br.com.java.sistemacontrolecarros.models.*;
 import br.com.java.sistemacontrolecarros.repository.MovimentacaoRepository;
-import br.com.java.sistemacontrolecarros.service.MovimentacaoService;
-import br.com.java.sistemacontrolecarros.service.UserService;
+import br.com.java.sistemacontrolecarros.service.*;
 
 @Controller
 public class LoginController {
@@ -26,15 +24,11 @@ public class LoginController {
     private UserService userService;
 
     @Autowired
-	private MovimentacaoService movimentacaoService;
+    VeiculoService veiculoService;
 
-    private final MovimentacaoRepository movimentacaoRepository;
+    @Autowired
+    MovimentacaoRepository movimentacaoRepository;
 
-    public LoginController(MovimentacaoRepository movimentacaoRepository) {
-        this.movimentacaoRepository = movimentacaoRepository;
-    }
-
-    
     @GetMapping(value = {"/", "/login"})
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
@@ -84,8 +78,10 @@ public class LoginController {
         modelAndView.addObject("adminMessage", "Conteúdo disponível apenas para usuários com função de administrador");
         modelAndView.setViewName("admin/home");
 
-        List<Movimentacao> carros = movimentacaoService.findAll();
+        List<Veiculo> carros = veiculoService.buscarTodos();
+        List<Movimentacao> movimentacoes = movimentacaoRepository.findAll();
         model.addAttribute("carros", carros);
+        model.addAttribute("movimentacoes", movimentacoes);
         
 
         return modelAndView;
