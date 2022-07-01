@@ -34,7 +34,7 @@ public class VeiculoServiceImpl implements VeiculoService{
     @Override
     public Veiculo buscarPorId(Veiculo veiculo) {
         // TODO Auto-generated method stub
-        return veiculoRepository.findById(veiculo.getId()).get();
+        return veiculoRepository.findById(veiculo.getIdVeiculo()).get();
     }
     
 }

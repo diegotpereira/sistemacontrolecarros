@@ -13,6 +13,9 @@ import br.com.java.sistemacontrolecarros.service.*;
 @Service
 public class MovimentacaoServiceImpl implements MovimentacaoService{
 
+    @Autowired
+    MovimentacaoRepository movimentacaoRepository;
+
     @Override
     public BigDecimal calcularPagamento(BigDecimal preco_Hora, BigDecimal hora) {
         // TODO Auto-generated method stub
@@ -53,11 +56,20 @@ public class MovimentacaoServiceImpl implements MovimentacaoService{
     //     return valor_pago;
     // }
 
+    // public Movimentacao findByMovimentacaoId(int veiculo_id) {
+
+    //     Movimentacao movimentacao = movimentacaoRepository.findByMovimentacaoId(veiculo_id);
+
+    //     return movimentacao;
+    // }
+
     public Movimentacao registrarEntrada(Movimentacao movimentacao) {
 
+        
         movimentacao.setData_entrada(LocalDate.now());
         movimentacao.setHora_entrada(LocalTime.now());
-
+        movimentacao.setVeiculo(movimentacao.getVeiculo());
+    
         return movimentoRepository.save(movimentacao);
     }
     // public Tiket registrarSaida(Movimentacao movimentacao) {
@@ -93,11 +105,11 @@ public class MovimentacaoServiceImpl implements MovimentacaoService{
     @Override
     public Movimentacao preencherDadosManualmente(Movimentacao movimentacao) {
         // TODO Auto-generated method stub
-        Movimentacao movimentacaoManual = new Movimentacao();
-		movimentacaoManual.setData_entrada(movimentacao.getData_entrada());
-		movimentacaoManual.setHora_entrada(movimentacao.getHora_entrada());
-		movimentacaoManual.setVeiculo(movimentacao.getVeiculo());
-		return movimentacaoManual;
+        
+		movimentacao.setData_entrada(movimentacao.getData_entrada());
+		movimentacao.setHora_entrada(movimentacao.getHora_entrada());
+        movimentacao.setVeiculo(movimentacao.getVeiculo());
+		
+		return movimentacao;
     }
-    
 }

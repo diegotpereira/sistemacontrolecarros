@@ -7,5 +7,7 @@ import br.com.java.sistemacontrolecarros.models.Veiculo;
 
 @Repository
 public interface VeiculoRepository extends JpaRepository<Veiculo, Long>{
+
+    
     
 }

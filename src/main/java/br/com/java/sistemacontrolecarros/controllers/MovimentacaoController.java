@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.java.sistemacontrolecarros.models.Movimentacao;
-import br.com.java.sistemacontrolecarros.models.Veiculo;
 import br.com.java.sistemacontrolecarros.repository.MovimentacaoRepository;
 import br.com.java.sistemacontrolecarros.repository.VeiculoRepository;
 import br.com.java.sistemacontrolecarros.service.MovimentacaoService;
@@ -52,4 +51,7 @@ public class MovimentacaoController {
         // model.addAttribute("movimentacao", movimentacaoRepository.findAll());
         return new ModelAndView("redirect:/admin/home");
     }
+    // public Movimentacao preencherDadosManualmente(Movimentacao movimentacao) {
+	// 	return movimentacaoService.preencherDadosManualmente(movimentacao);
+	// }
 }

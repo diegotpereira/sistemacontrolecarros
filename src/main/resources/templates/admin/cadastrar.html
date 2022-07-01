@@ -16,9 +16,19 @@
         <div class="card">
             <div class="card-body">
                 <div class="col-md-10">
+                    <!-- <form action="#" th:action="@{/veiculo/salvar}" th:object="${movimentacao}" method="post">
+                        <div class="row">
+                            <div class="form-group col-md-8">
+                                <input type="hidden" th:field="*{veiculo_id}" id="veiculo_id">
+                            </div>
+                        </div>
+                    </form> -->
                     <form action="#" th:action="@{/veiculo/salvar}" th:object="${veiculo}" method="post">
                         <h1>Confirme a entrada</h1>
                         <div class="row">
+                            <!-- <div class="form-group col-md-8">
+                                <input type="hidden" th:field="*{veiculo}" id="veiculo">
+                            </div> -->
                             <div class="form-group col-md-8">
                                 <label for="modelo" class="col-form-label">Modelo</label> 
                                 <input type="text" th:field="*{modelo}" class="form-control" id="modelo" placeholder="modelo"> 

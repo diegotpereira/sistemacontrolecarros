@@ -30,14 +30,22 @@ public class VeiculoController {
     }
 
     @PostMapping("/salvar")
-    public ModelAndView salvar(@Valid Veiculo veiculo, BindingResult result, Model model, Movimentacao movimentacao) {
+    public ModelAndView salvar(@Valid Veiculo veiculo, BindingResult result, Model model, @Valid Movimentacao movimentacao) {
 
         if (result.hasErrors()) {
 			return novo(veiculo);
 		}
+        
+        
+        // Movimentacao movimentacao = movimentacaoService.findByMovimentacaoId(veiculo_id);
+        
+        model.addAttribute("movimentacao", movimentacao);
         model.addAttribute("veiculo", veiculo);
+
         veiculoService.salvar(veiculo);
         movimentacaoService.registrarEntrada(movimentacao);
+        
+        
 
         return new ModelAndView("redirect:/admin/home");
     }
