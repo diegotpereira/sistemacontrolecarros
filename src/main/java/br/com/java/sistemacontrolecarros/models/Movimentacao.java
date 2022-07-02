@@ -36,10 +36,8 @@ public class Movimentacao {
     @JsonFormat(pattern = "HH:mm:ss")
 	private LocalTime hora_saida;
 
-    // @OneToOne
-    // @JoinColumn(name = "veiculo_id", referencedColumnName = "id")
-    @OneToOne(cascade=CascadeType.PERSIST)
-    @JoinColumn(name = "idVeiculo")
-	private Veiculo veiculo;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "veiculo_id")
+	Veiculo veiculo;
 
 }
