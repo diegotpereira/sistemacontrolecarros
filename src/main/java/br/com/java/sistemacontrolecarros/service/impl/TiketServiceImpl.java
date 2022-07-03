@@ -19,6 +19,17 @@ import br.com.java.sistemacontrolecarros.service.VeiculoService;
 @Service
 public class TiketServiceImpl implements TiketService{
 
+    @Autowired
+    MovimentacaoService movimentacaoService;
+
+    @Autowired
+    VeiculoService veiculoService;
+
+    @Autowired
+    PrecoService precoService;
+
+    @Autowired
+    TiketRepository tiketRepository;
     
 
     @Override
@@ -38,22 +49,6 @@ public class TiketServiceImpl implements TiketService{
         // TODO Auto-generated method stub
         return null;
     }
-
-    // @Autowired
-    // TiketRepository tiketRepository;
-
-    // @Autowired
-    // PrecoService precoService;
-
-    // @Autowired
-    // MovimentacaoService movimentacaoService;
-
-    // @Autowired
-    // VeiculoService veiculoService;
-
-    // public TiketServiceImpl(TiketRepository tiketRepository) {
-    //     this.tiketRepository = tiketRepository;
-    // }
 
     @Override
     public Tiket gerarCupomPagamento(Movimentacao movimentacao) {

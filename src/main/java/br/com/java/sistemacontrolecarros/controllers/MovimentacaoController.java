@@ -36,7 +36,7 @@ public class MovimentacaoController {
         
         // movimentacaoService.preencherDadosManualmente(movimentacao);
         Movimentacao movimentacao = movimentacaoRepository.findById(id)
-        .orElseThrow(() -> new IllegalArgumentException("Id do carro inválido:" + id));
+        .orElseThrow(() -> new IllegalArgumentException("Id de mvovimentação inválido:" + id));
 
         modelAndView.addObject("movimentacao", movimentacao);
 		modelAndView.setViewName("admin/saida");
