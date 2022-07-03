@@ -3,7 +3,6 @@ package br.com.java.sistemacontrolecarros.service.impl;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,18 +25,12 @@ public class MovimentacaoServiceImpl implements MovimentacaoService{
         // TODO Auto-generated method stub
         return null;
     }
-
-    @Override
-    public Tiket registrarSaida(Movimentacao movimentacao) {
-        // TODO Auto-generated method stub
-        return null;
-    }
     
     @Autowired
     MovimentacaoRepository movimentoRepository;
 
-    // @Autowired
-    // TiketService tiketService;
+    @Autowired
+    TiketService tiketService;
 
     // @Autowired
     // PrecoService precoService;
@@ -76,28 +69,28 @@ public class MovimentacaoServiceImpl implements MovimentacaoService{
     
         return movimentoRepository.save(movimentacao);
     }
-    // public Tiket registrarSaida(Movimentacao movimentacao) {
+    public Tiket registrarSaida(Movimentacao movimentacao) {
 
-    //     Movimentacao movimentacaoSaindo = movimentoRepository.findById(movimentacao.getId()).get();
-	// 	Movimentacao movimentacaoSaindoRegistrado = registrarHoraSaida(registrarDataSaida(movimentacaoSaindo));
+        Movimentacao movimentacaoSaindo = movimentoRepository.findById(movimentacao.getId()).get();
+		Movimentacao movimentacaoSaindoRegistrado = registrarHoraSaida(registrarDataSaida(movimentacaoSaindo));
 
-    //     movimentoRepository.save(movimentacaoSaindoRegistrado);
+        movimentoRepository.save(movimentacaoSaindoRegistrado);
 
 
-    //     return tiketService.gerarCupomPagamento(movimentacaoSaindoRegistrado);
-    // }
+        return tiketService.gerarCupomPagamento(movimentacaoSaindoRegistrado);
+    }
 
-    // public Movimentacao registrarDataSaida(Movimentacao movimentacao) {
+    public Movimentacao registrarDataSaida(Movimentacao movimentacao) {
 		
-	// 	movimentacao.setData_saida(LocalDate.now());
+		movimentacao.setData_saida(LocalDate.now());
 		
-	// 	return movimentacao;
-	// }
-    // public Movimentacao registrarHoraSaida(Movimentacao movimentacao) {
-    //     movimentacao.setHora_saida(LocalTime.now());
+		return movimentacao;
+	}
+    public Movimentacao registrarHoraSaida(Movimentacao movimentacao) {
+        movimentacao.setHora_saida(LocalTime.now());
         
-    //     return movimentacao;
-    // }
+        return movimentacao;
+    }
 
 
     @Override
