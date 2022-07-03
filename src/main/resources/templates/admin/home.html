@@ -48,6 +48,7 @@
                                             <th>Hora de entrada</th>
                                             <th>Editar</th>
                                             <th>Finalizar</th>
+                                            <th>Pagar</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -57,6 +58,7 @@
                                                 <td th:text="${carro.data_entrada}"></td>
                                                 <td th:text="${carro.hora_entrada}"></td>
                                                 <td><a th:href="@{/carros/editar/{id}(id=${carro.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                                                <td><a th:href="@{/movimentacao/visualizar/{id}(id=${carro.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
                                                 <td><a th:href="@{/movimentacao/visualizar/{id}(id=${carro.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
                                             </tr>
                                         </tbody>

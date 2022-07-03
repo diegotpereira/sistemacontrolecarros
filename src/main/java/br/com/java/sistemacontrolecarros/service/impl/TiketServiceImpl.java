@@ -19,11 +19,7 @@ import br.com.java.sistemacontrolecarros.service.VeiculoService;
 @Service
 public class TiketServiceImpl implements TiketService{
 
-    @Override
-    public Tiket gerarCupomPagamento(Movimentacao movimentacao) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    
 
     @Override
     public LocalTime calculaIntervaloDeTempo(Movimentacao movimentacao) {
@@ -59,43 +55,43 @@ public class TiketServiceImpl implements TiketService{
     //     this.tiketRepository = tiketRepository;
     // }
 
-    // @Override
-    // public Tiket gerarCupomPagamento(Movimentacao movimentacao) {
-    //     // TODO Auto-generated method stub
-    //     Movimentacao movimentacaoComSaidaRegistrada = movimentacaoService.buscarRegistroPorId(movimentacao);
+    @Override
+    public Tiket gerarCupomPagamento(Movimentacao movimentacao) {
+        // TODO Auto-generated method stub
+        Movimentacao movimentacaoComSaidaRegistrada = movimentacaoService.buscarRegistroPorId(movimentacao);
 
-    //     LocalDate dataEntrada = movimentacaoComSaidaRegistrada.getData_entrada();
-	// 	LocalDate dataSaida = movimentacaoComSaidaRegistrada.getData_saida();
-	// 	LocalTime horaEntrada = movimentacaoComSaidaRegistrada.getHora_entrada();
-	// 	LocalTime horaSaida = movimentacaoComSaidaRegistrada.getHora_saida();
+        LocalDate dataEntrada = movimentacaoComSaidaRegistrada.getData_entrada();
+		LocalDate dataSaida = movimentacaoComSaidaRegistrada.getData_saida();
+		LocalTime horaEntrada = movimentacaoComSaidaRegistrada.getHora_entrada();
+		LocalTime horaSaida = movimentacaoComSaidaRegistrada.getHora_saida();
 
-    //     Veiculo veiculoSaida = veiculoService.buscarPorId(movimentacaoComSaidaRegistrada.getVeiculo());
+        Veiculo veiculoSaida = veiculoService.buscarPorId(movimentacaoComSaidaRegistrada.getVeiculo());
 
-    //     String tipoVeiculoSaida = veiculoSaida.getTipoVeiculo();
-    //     String placaVeiculoSaida = veiculoSaida.getPlaca();
-    //     // String modeloVeiculoSaida = veiculoSaida.getModelo();
+        String tipoVeiculoSaida = veiculoSaida.getTipoVeiculo();
+        String placaVeiculoSaida = veiculoSaida.getPlaca();
+        // String modeloVeiculoSaida = veiculoSaida.getModelo();
 
-    //     Preco precoPorTempo = precoService.buscar(veiculoSaida);
+        Preco precoPorTempo = precoService.buscar(veiculoSaida);
 
-    //     Double precoPorHora = precoPorTempo.getPrecoHora();
-    //     Double precoHoraFracao = precoPorTempo.getPrecoHoraFracao();
+        Double precoPorHora = precoPorTempo.getPrecoHora();
+        Double precoHoraFracao = precoPorTempo.getPrecoHoraFracao();
 
-    //     LocalTime intervaloDeTempo = calculaIntervaloDeTempo(movimentacao);
+        LocalTime intervaloDeTempo = calculaIntervaloDeTempo(movimentacao);
 
-    //     Double valorTotal = calcularValorBaseadoNoTempo(precoPorHora, precoHoraFracao, intervaloDeTempo);
+        Double valorTotal = calcularValorBaseadoNoTempo(precoPorHora, precoHoraFracao, intervaloDeTempo);
 
-    //     Tiket cupoPagamento = new Tiket();
-    //     cupoPagamento.setTipoVeiculo(tipoVeiculoSaida);
-    //     cupoPagamento.setVeiculoPlaca(placaVeiculoSaida);
-    //     cupoPagamento.setDataEntrada(dataEntrada);
-    //     cupoPagamento.setDataSaida(dataSaida);
-    //     cupoPagamento.setHoraEntrada(horaEntrada);
-    //     cupoPagamento.setHoraSaida(horaSaida);
-    //     cupoPagamento.setPrecoHora(precoPorHora);
-    //     cupoPagamento.setValorTotal(valorTotal);
+        Tiket cupoPagamento = new Tiket();
+        cupoPagamento.setTipoVeiculo(tipoVeiculoSaida);
+        cupoPagamento.setVeiculoPlaca(placaVeiculoSaida);
+        cupoPagamento.setDataEntrada(dataEntrada);
+        cupoPagamento.setDataSaida(dataSaida);
+        cupoPagamento.setHoraEntrada(horaEntrada);
+        cupoPagamento.setHoraSaida(horaSaida);
+        cupoPagamento.setPrecoHora(precoPorHora);
+        cupoPagamento.setValorTotal(valorTotal);
 
-    //     return tiketRepository.save(cupoPagamento);
-    // }
+        return tiketRepository.save(cupoPagamento);
+    }
 
     // @Override
     // public LocalTime calculaIntervaloDeTempo(Movimentacao movimentacao) {
