@@ -23,30 +23,24 @@ public class VeiculoController {
     MovimentacaoService movimentacaoService;
 
     @GetMapping(value = "/cadastrar")
-    public ModelAndView novo(Veiculo veiculo) {
+    public ModelAndView novo(Movimentacao movimentacao) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("admin/cadastrar");
         return modelAndView;
     }
 
     @PostMapping("/salvar")
-    public ModelAndView salvar(@Valid Veiculo veiculo, BindingResult result, Model model, @Valid Movimentacao movimentacao) {
+    public ModelAndView salvar(@Valid Veiculo veiculo, BindingResult result, Model model, @Valid Movimentacao movimentacao, Long id) {
 
         if (result.hasErrors()) {
-			return novo(veiculo);
+			return novo(movimentacao);
 		}
-        
-        
-        // Movimentacao movimentacao = movimentacaoService.findByMovimentacaoId(veiculo_id);
         
         model.addAttribute("movimentacao", movimentacao);
         model.addAttribute("veiculo", veiculo);
-
         veiculoService.salvar(veiculo);
         movimentacaoService.registrarEntrada(movimentacao);
         
-        
-
         return new ModelAndView("redirect:/admin/home");
     }
 }

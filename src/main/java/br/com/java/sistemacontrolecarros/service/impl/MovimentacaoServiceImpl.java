@@ -3,11 +3,13 @@ package br.com.java.sistemacontrolecarros.service.impl;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.java.sistemacontrolecarros.models.*;
-import br.com.java.sistemacontrolecarros.repository.MovimentacaoRepository;
+import br.com.java.sistemacontrolecarros.repository.*;
 import br.com.java.sistemacontrolecarros.service.*;
 
 @Service
@@ -15,6 +17,9 @@ public class MovimentacaoServiceImpl implements MovimentacaoService{
 
     @Autowired
     MovimentacaoRepository movimentacaoRepository;
+
+    @Autowired
+    VeiculoRepository veiculoRepository;
 
     @Override
     public BigDecimal calcularPagamento(BigDecimal preco_Hora, BigDecimal hora) {
@@ -65,7 +70,6 @@ public class MovimentacaoServiceImpl implements MovimentacaoService{
 
     public Movimentacao registrarEntrada(Movimentacao movimentacao) {
 
-        
         movimentacao.setData_entrada(LocalDate.now());
         movimentacao.setHora_entrada(LocalTime.now());
         movimentacao.setVeiculo(movimentacao.getVeiculo());

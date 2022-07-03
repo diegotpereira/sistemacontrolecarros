@@ -14,9 +14,9 @@ import lombok.*;
 public class Veiculo {
 
     @Id
-    @Column(name = "idVeiculo")
+    @Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idVeiculo;
+	private Long id;
 
     @Column(name = "placa")
     @NotEmpty(message = "*Por favor forneça uma placa")
@@ -28,11 +28,4 @@ public class Veiculo {
 
     @Column(name = "tipoVeiculo")
 	private String tipoVeiculo;
-
-    // @OneToOne(fetch = FetchType.LAZY,
-    //         cascade =  CascadeType.ALL,
-    //         mappedBy = "veiculo")
-    // @OneToOne
-	// @JoinColumn(name = "id")
-    // private Movimentacao movimentacao;
 }

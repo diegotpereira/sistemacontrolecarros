@@ -7,6 +7,5 @@ import br.com.java.sistemacontrolecarros.models.Movimentacao;
 
 @Repository
 public interface MovimentacaoRepository extends JpaRepository<Movimentacao, Long>{
-
-    // public Movimentacao findByMovimentacaoId(int veiculo_id);
+    
 }
