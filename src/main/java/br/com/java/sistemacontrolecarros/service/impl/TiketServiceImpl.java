@@ -30,25 +30,6 @@ public class TiketServiceImpl implements TiketService{
 
     @Autowired
     TiketRepository tiketRepository;
-    
-
-    @Override
-    public LocalTime calculaIntervaloDeTempo(Movimentacao movimentacao) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Double calcularValorBaseadoNoTempo(Double precoPorHora, Double precoHoraFracao, LocalTime intervaloDeTempo) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Boolean validaIntervaloDeTempo(Movimentacao movimentacao) {
-        // TODO Auto-generated method stub
-        return null;
-    }
 
     @Override
     public Tiket gerarCupomPagamento(Movimentacao movimentacao) {
@@ -88,38 +69,38 @@ public class TiketServiceImpl implements TiketService{
         return tiketRepository.save(cupoPagamento);
     }
 
-    // @Override
-    // public LocalTime calculaIntervaloDeTempo(Movimentacao movimentacao) {
-    //     // TODO Auto-generated method stub
-    //     return movimentacao.getHora_saida()
-    //     .minusHours(movimentacao.getHora_entrada()
-    //     .getHour())
-    //     .minusMinutes(movimentacao.getHora_entrada().getMinute());
-    // }
+    @Override
+    public LocalTime calculaIntervaloDeTempo(Movimentacao movimentacao) {
+        // TODO Auto-generated method stub
+        return movimentacao.getHora_saida()
+        .minusHours(movimentacao.getHora_entrada()
+        .getHour())
+        .minusMinutes(movimentacao.getHora_entrada().getMinute());
+    }
 
-    // @Override
-    // public Double calcularValorBaseadoNoTempo(Double precoPorHora, Double precoHoraFracao, LocalTime intervaloDeTempo) {
-    //     // TODO Auto-generated method stub
-    //     Integer tempoTotalHoras = intervaloDeTempo.getHour();
-    //     Integer tempoTotalMinutos = intervaloDeTempo.getMinute();
+    @Override
+    public Double calcularValorBaseadoNoTempo(Double precoPorHora, Double precoHoraFracao, LocalTime intervaloDeTempo) {
+        // TODO Auto-generated method stub
+        Integer tempoTotalHoras = intervaloDeTempo.getHour();
+        Integer tempoTotalMinutos = intervaloDeTempo.getMinute();
 
-    //     Double valorHoras = tempoTotalHoras * precoPorHora;
-    //     Double valorDemaisHoras = (tempoTotalMinutos / 4 ) * precoHoraFracao;
+        Double valorHoras = tempoTotalHoras * precoPorHora;
+        Double valorDemaisHoras = (tempoTotalMinutos / 4 ) * precoHoraFracao;
 
-    //     Double valorTotal = valorHoras + valorDemaisHoras;
+        Double valorTotal = valorHoras + valorDemaisHoras;
 
-    //     return valorTotal;
-    // }
+        return valorTotal;
+    }
 
-    // @Override
-    // public Boolean validaIntervaloDeTempo(Movimentacao movimentacao) {
-    //     // TODO Auto-generated method stub
-    //     if (movimentacao.getData_entrada().isAfter(movimentacao.getData_saida())) {
-    //         throw new RuntimeException("Erro! Data de entrada é posterior a data de saída.");
-    //     } else if (movimentacao.getHora_entrada().isAfter(movimentacao.getHora_saida())) {
-    //         throw new RuntimeException("Erro! hora de entrada é posterior a hora de saída.");
-    //     }
-    //     return true;
-    // }
+    @Override
+    public Boolean validaIntervaloDeTempo(Movimentacao movimentacao) {
+        // TODO Auto-generated method stub
+        if (movimentacao.getData_entrada().isAfter(movimentacao.getData_saida())) {
+            throw new RuntimeException("Erro! Data de entrada é posterior a data de saída.");
+        } else if (movimentacao.getHora_entrada().isAfter(movimentacao.getHora_saida())) {
+            throw new RuntimeException("Erro! hora de entrada é posterior a hora de saída.");
+        }
+        return true;
+    }
     
 }

@@ -3,6 +3,8 @@ package br.com.java.sistemacontrolecarros.models;
 import java.time.*;
 import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.*;
 
 @Data
@@ -14,7 +16,7 @@ import lombok.*;
 public class Movimentacao {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -38,6 +40,7 @@ public class Movimentacao {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "veiculo_id")
+    @JsonIgnore
 	Veiculo veiculo;
 
 }

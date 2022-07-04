@@ -19,15 +19,6 @@ public class MovimentacaoServiceImpl implements MovimentacaoService{
 
     @Autowired
     VeiculoRepository veiculoRepository;
-<<<<<<< HEAD
-
-    @Override
-    public BigDecimal calcularPagamento(BigDecimal preco_Hora, BigDecimal hora) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-=======
->>>>>>> de97bab2437659ef9b9f917b06ca4d16dccea556
 
     @Override
     public BigDecimal calcularPagamento(BigDecimal preco_Hora, BigDecimal hora) {
@@ -40,35 +31,6 @@ public class MovimentacaoServiceImpl implements MovimentacaoService{
 
     @Autowired
     TiketService tiketService;
-
-    // @Autowired
-    // PrecoService precoService;
-
-    // @Autowired
-    // MovimentacaoService movimentacaoService;
-
-    // @Autowired
-    // VeiculoService veiculoService;
-
-    
-    // public MovimentacaoServiceImpl(MovimentacaoRepository movimentoRepository) {
-    //     this.movimentoRepository = movimentoRepository;
-    // }
-
-    // @Override
-    // public BigDecimal calcularPagamento(BigDecimal preco_Hora, BigDecimal horas) {
-    //     // TODO Auto-generated method stub
-    //     BigDecimal valor_pago = preco_Hora.multiply(horas);
-        
-    //     return valor_pago;
-    // }
-
-    // public Movimentacao findByMovimentacaoId(int veiculo_id) {
-
-    //     Movimentacao movimentacao = movimentacaoRepository.findByMovimentacaoId(veiculo_id);
-
-    //     return movimentacao;
-    // }
 
     public Movimentacao registrarEntrada(Movimentacao movimentacao) {
 
