@@ -1,12 +1,8 @@
 package br.com.java.sistemacontrolecarros.service.impl;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
-
+import java.time.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import br.com.java.sistemacontrolecarros.models.*;
 import br.com.java.sistemacontrolecarros.repository.*;
 import br.com.java.sistemacontrolecarros.service.*;
@@ -30,7 +26,6 @@ public class MovimentacaoServiceImpl implements MovimentacaoService{
 
         movimentacao.setData_entrada(LocalDate.now());
         movimentacao.setHora_entrada(LocalTime.now());
-        // movimentacao.setVeiculo(movimentacao.getVeiculo());
     
         return movimentoRepository.save(movimentacao);
     }
@@ -40,8 +35,6 @@ public class MovimentacaoServiceImpl implements MovimentacaoService{
 		Movimentacao movimentacaoSaindoRegistrado = registrarHoraSaida(registrarDataSaida(movimentacaoSaindo));
 
         movimentoRepository.save(movimentacaoSaindoRegistrado);
-
-
         return tiketService.gerarCupomPagamento(movimentacaoSaindoRegistrado);
     }
 
