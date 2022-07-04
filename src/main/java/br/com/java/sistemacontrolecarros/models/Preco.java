@@ -14,6 +14,7 @@ public class Preco {
     
     @Id
 	@NotEmpty
+	@Column(name = "tipoVeiculo", nullable = false)
 	private String tipoVeiculo;
 
     @Column(name = "precoHora")
@@ -22,4 +23,5 @@ public class Preco {
 	
 	@Column(name = "precoHoraFracao")
 	private Double precoHoraFracao;
+	
 }

@@ -14,8 +14,8 @@ import lombok.*;
 public class Veiculo {
 
     @Id
-    @Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
 	private Long id;
 
     @Column(name = "placa")
@@ -27,5 +27,6 @@ public class Veiculo {
     private String modelo;
 
     @Column(name = "tipoVeiculo")
+    @NotEmpty(message = "*Por favor forneça um tipo de veiculo")
 	private String tipoVeiculo;
 }

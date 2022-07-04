@@ -36,10 +36,13 @@ public class VeiculoController {
 			return novo(movimentacao);
 		}
         
-        model.addAttribute("movimentacao", movimentacao);
+        
         model.addAttribute("veiculo", veiculo);
-        veiculoService.salvar(veiculo);
+        // veiculoService.salvar(veiculo);
+
+        model.addAttribute("movimentacao", movimentacao);
         movimentacaoService.registrarEntrada(movimentacao);
+        
         
         return new ModelAndView("redirect:/admin/home");
     }

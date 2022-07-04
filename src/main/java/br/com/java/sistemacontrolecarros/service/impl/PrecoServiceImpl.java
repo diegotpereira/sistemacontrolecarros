@@ -2,9 +2,7 @@ package br.com.java.sistemacontrolecarros.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import br.com.java.sistemacontrolecarros.models.Preco;
-import br.com.java.sistemacontrolecarros.models.Veiculo;
+import br.com.java.sistemacontrolecarros.models.*;
 import br.com.java.sistemacontrolecarros.repository.PrecoRepository;
 import br.com.java.sistemacontrolecarros.service.PrecoService;
 

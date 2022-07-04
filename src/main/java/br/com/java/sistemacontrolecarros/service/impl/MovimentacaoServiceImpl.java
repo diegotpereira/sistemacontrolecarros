@@ -19,12 +19,6 @@ public class MovimentacaoServiceImpl implements MovimentacaoService{
 
     @Autowired
     VeiculoRepository veiculoRepository;
-
-    @Override
-    public BigDecimal calcularPagamento(BigDecimal preco_Hora, BigDecimal hora) {
-        // TODO Auto-generated method stub
-        return null;
-    }
     
     @Autowired
     MovimentacaoRepository movimentoRepository;
@@ -36,7 +30,7 @@ public class MovimentacaoServiceImpl implements MovimentacaoService{
 
         movimentacao.setData_entrada(LocalDate.now());
         movimentacao.setHora_entrada(LocalTime.now());
-        movimentacao.setVeiculo(movimentacao.getVeiculo());
+        // movimentacao.setVeiculo(movimentacao.getVeiculo());
     
         return movimentoRepository.save(movimentacao);
     }
