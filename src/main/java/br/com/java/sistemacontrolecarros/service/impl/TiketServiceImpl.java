@@ -73,10 +73,14 @@ public class TiketServiceImpl implements TiketService{
     @Override
     public Double calcularValorBaseadoNoTempo(Double precoPorHora, Double precoHoraFracao, LocalTime intervaloDeTempo) {
         // TODO Auto-generated method stub
-        // float valorEstadia = 6;
+        float valorEstadia = 6;
 
         Integer tempoTotalHoras = intervaloDeTempo.getHour();
         Integer tempoTotalMinutos = intervaloDeTempo.getMinute();
+
+        if (tempoTotalMinutos < 1) {
+            valorEstadia += tempoTotalHoras * 2;
+        }
 
 
         Double valorHoras = tempoTotalHoras * precoPorHora;
@@ -84,7 +88,7 @@ public class TiketServiceImpl implements TiketService{
 
         Double valorTotal = valorHoras + valorDemaisHoras;
 
-        return valorTotal;
+        return valorTotal + valorEstadia;
     }
 
     @Override
