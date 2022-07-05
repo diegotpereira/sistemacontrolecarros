@@ -1,6 +1,7 @@
 package br.com.java.sistemacontrolecarros.service.impl;
 
-import java.time.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import br.com.java.sistemacontrolecarros.models.*;
@@ -72,8 +73,11 @@ public class TiketServiceImpl implements TiketService{
     @Override
     public Double calcularValorBaseadoNoTempo(Double precoPorHora, Double precoHoraFracao, LocalTime intervaloDeTempo) {
         // TODO Auto-generated method stub
+        // float valorEstadia = 6;
+
         Integer tempoTotalHoras = intervaloDeTempo.getHour();
         Integer tempoTotalMinutos = intervaloDeTempo.getMinute();
+
 
         Double valorHoras = tempoTotalHoras * precoPorHora;
         Double valorDemaisHoras = (tempoTotalMinutos / 4 ) * precoHoraFracao;
