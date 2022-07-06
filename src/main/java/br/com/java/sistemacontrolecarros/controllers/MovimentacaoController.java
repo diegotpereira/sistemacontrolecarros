@@ -35,6 +35,29 @@ public class MovimentacaoController {
     @Autowired
     PrecoService precoService;
 
+    
+
+    @GetMapping("/editar/{id}")
+    public ModelAndView exibirEditar(@PathVariable("id") long id, Model model) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        Movimentacao movimentacao = movimentacaoRepository.findById(id)
+        .orElseThrow(() -> new IllegalArgumentException("Id do carro inválido:" + id));
+        model.addAttribute("movimentacao", movimentacao);
+        modelAndView.setViewName("admin/atualizar");
+
+        return modelAndView;
+    }
+    @PostMapping("/atualizar/{id}")
+    public ModelAndView updateStudent(@PathVariable("id") long id, Movimentacao movimentacao, Model model) {
+
+        movimentacao.setData_entrada(movimentacao.getData_entrada());
+        movimentacao.setHora_entrada(movimentacao.getHora_entrada());
+        movimentacaoRepository.save(movimentacao);
+
+        return new ModelAndView("redirect:/admin/home");
+    }
+
     @GetMapping("/visualizar/{id}")
     public ModelAndView exibirFormularioFinalizar(@PathVariable("id") long id, Model model, @Valid Preco preco) {
 

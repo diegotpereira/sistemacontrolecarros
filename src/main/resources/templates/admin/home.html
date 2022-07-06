@@ -33,7 +33,7 @@
                         <div th:switch="${carros}" class="container my-5">
                             <p class="my-5">
                                 <a th:href="@{/veiculo/cadastrar}" class="btn btn-primary">
-                                    <i class="fas fa-user-plus ml-2"> Adicionar Carro</i>
+                                    <i class="fas fa-solid fa-car ml-2"> Adicionar Carro</i>
                                 </a>
                             </p>
                             <div class="col-md-10">
@@ -47,7 +47,7 @@
                                             <th>Data de Entrada</th>
                                             <th>Hora de entrada</th>
                                             <th>Editar</th>
-                                            <th>Valor Hora</th>
+                                            <th>Hora</th>
                                             <th>Finalizar</th>
                                         </tr>
                                         </thead>
@@ -57,9 +57,9 @@
                                                 <td th:text="${carro.veiculo.modelo}"></td>
                                                 <td th:text="${carro.data_entrada}"></td>
                                                 <td th:text="${carro.hora_entrada}"></td>
-                                                <td><a th:href="@{/carros/editar/{id}(id=${carro.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-                                                <td><a th:href="@{/preco/cadastrar}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-                                                <td><a th:href="@{/movimentacao/visualizar/{id}(id=${carro.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+                                                <td><a th:href="@{/movimentacao/editar/{id}(id=${carro.id})}" class="btn btn-primary"><i class="fas fa-solid fa-car ml-2"></i></a></td>
+                                                <td><a th:href="@{/preco/cadastrar}" class="btn btn-primary"><i class="fas fa-solid fa-car ml-2"></i></a></td>
+                                                <td><a th:href="@{/movimentacao/visualizar/{id}(id=${carro.id})}" class="btn btn-primary"><i class="fas fa-solid fa-car ml-2"></i></a></td>
                                             </tr>
                                         </tbody>
                                     </table>
