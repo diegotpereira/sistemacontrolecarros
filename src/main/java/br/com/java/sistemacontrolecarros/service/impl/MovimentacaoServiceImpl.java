@@ -67,4 +67,7 @@ public class MovimentacaoServiceImpl implements MovimentacaoService{
 		
 		return movimentacao;
     }
+    public void atualizar(Movimentacao movimentacao) {
+        movimentacaoRepository.save(movimentacao);
+    }
 }

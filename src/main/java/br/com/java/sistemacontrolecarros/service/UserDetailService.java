@@ -1,19 +1,13 @@
 package br.com.java.sistemacontrolecarros.service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
+import java.util.*;
 import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;
-
-import br.com.java.sistemacontrolecarros.models.Role;
+import br.com.java.sistemacontrolecarros.models.*;
 import br.com.java.sistemacontrolecarros.models.User;
 
 @Service

@@ -1,11 +1,8 @@
 package br.com.java.sistemacontrolecarros.service;
 
 import java.time.LocalTime;
-
 import org.springframework.stereotype.Service;
-
-import br.com.java.sistemacontrolecarros.models.Movimentacao;
-import br.com.java.sistemacontrolecarros.models.Tiket;
+import br.com.java.sistemacontrolecarros.models.*;
 
 @Service
 public interface TiketService {

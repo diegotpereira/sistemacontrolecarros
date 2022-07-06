@@ -1,16 +1,11 @@
 package br.com.java.sistemacontrolecarros.service;
 
-import java.util.Arrays;
-import java.util.HashSet;
-
+import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import br.com.java.sistemacontrolecarros.models.Role;
-import br.com.java.sistemacontrolecarros.models.User;
-import br.com.java.sistemacontrolecarros.repository.RoleRepository;
-import br.com.java.sistemacontrolecarros.repository.UserRepository;
+import br.com.java.sistemacontrolecarros.models.*;
+import br.com.java.sistemacontrolecarros.repository.*;
 
 @Service
 public class UserService {

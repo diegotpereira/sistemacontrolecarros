@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import br.com.java.sistemacontrolecarros.models.*;
 import br.com.java.sistemacontrolecarros.service.*;
 
@@ -16,9 +15,6 @@ import br.com.java.sistemacontrolecarros.service.*;
 @RequestMapping("/veiculo")
 public class VeiculoController {
   
-    @Autowired
-    private VeiculoService veiculoService;
-
     @Autowired
     MovimentacaoService movimentacaoService;
 
@@ -36,13 +32,9 @@ public class VeiculoController {
 			return novo(movimentacao);
 		}
         
-        
         model.addAttribute("veiculo", veiculo);
-        // veiculoService.salvar(veiculo);
-
         model.addAttribute("movimentacao", movimentacao);
         movimentacaoService.registrarEntrada(movimentacao);
-        
         
         return new ModelAndView("redirect:/admin/home");
     }
