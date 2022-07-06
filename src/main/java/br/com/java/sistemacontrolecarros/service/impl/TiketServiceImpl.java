@@ -75,32 +75,35 @@ public class TiketServiceImpl implements TiketService{
         // TODO Auto-generated method stub
         // float valorEstadia = 6;
         // Double taxa = 6.0;
-        int taxa = 0;
-        int horaAdicional = 0;
+        
+        // precoPorHora = 6.0;
+        int primeiraHora = 0;
+        // int precoHoraFracao = 4;
 
         Integer tempoTotalHoras = intervaloDeTempo.getHour();
         Integer tempoTotalMinutos = intervaloDeTempo.getMinute();
 
         // if(int index = 0; tempoTotalMinutos)
 
-        if (tempoTotalMinutos > 1) {
+        if (tempoTotalMinutos < 60) {
             // taxa += tempoTotalHoras * 2;
             // tempoTotalMinutos += 60;
             
-            taxa += 6;
+            primeiraHora = precoPorHora.intValue();
 
-        } else if (tempoTotalMinutos > 60) {
+        } 
+        // else if (tempoTotalHoras > 1) {
 
-            horaAdicional += 4;
-        }
+        //       = tempoTotalHoras;
+        // }
 
 
         Double valorHoras = tempoTotalHoras * precoPorHora;
         Double valorDemaisHoras = (tempoTotalMinutos / 4 ) * precoHoraFracao;
 
-        Double valorTotal = valorHoras + valorDemaisHoras;
+        Double valorTotal = valorHoras + valorDemaisHoras + primeiraHora;
 
-        return valorTotal + taxa + horaAdicional;
+        return valorTotal;
     }
 
     @Override
