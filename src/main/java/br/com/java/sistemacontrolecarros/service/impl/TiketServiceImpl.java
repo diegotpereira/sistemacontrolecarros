@@ -73,31 +73,18 @@ public class TiketServiceImpl implements TiketService{
     @Override
     public Double calcularValorBaseadoNoTempo(Double precoPorHora, Double precoHoraFracao, LocalTime intervaloDeTempo) {
         // TODO Auto-generated method stub
-        // float valorEstadia = 6;
-        // Double taxa = 6.0;
-        
-        // precoPorHora = 6.0;
         int primeiraHora = 0;
-        // int precoHoraFracao = 4;
 
+        // Busca o valor de hora e minuto
         Integer tempoTotalHoras = intervaloDeTempo.getHour();
         Integer tempoTotalMinutos = intervaloDeTempo.getMinute();
 
-        // if(int index = 0; tempoTotalMinutos)
-
-        if (tempoTotalMinutos < 60) {
-            // taxa += tempoTotalHoras * 2;
-            // tempoTotalMinutos += 60;
+        if (tempoTotalMinutos >= 0) {
             
             primeiraHora = precoPorHora.intValue();
 
         } 
-        // else if (tempoTotalHoras > 1) {
-
-        //       = tempoTotalHoras;
-        // }
-
-
+        
         Double valorHoras = tempoTotalHoras * precoPorHora;
         Double valorDemaisHoras = (tempoTotalMinutos / 4 ) * precoHoraFracao;
 
